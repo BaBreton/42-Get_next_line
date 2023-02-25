@@ -5,111 +5,93 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: babreton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 13:51:07 by babreton          #+#    #+#             */
-/*   Updated: 2023/02/21 20:03:49 by babreton         ###   ########.fr       */
+/*   Created: 2023/02/25 06:44:31 by babreton          #+#    #+#             */
+/*   Updated: 2023/02/25 15:05:47 by babreton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
 }
-
-char	*ft_strjoin(char *s1, char *s2, int bytes_read)
+char	*ft_strjoin(char *s2, char *s1)
 {
 	char	*str;
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	if (!s2)
 		return (NULL);
 	if (!s1)
-		return (ft_strndup(s2, bytes_read));
+		return (ft_strdup(s2));
 	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
+	i = -1;
+	while (s1[++i])
 		str[i] = s1[i];
-		i++;
-	}
 	j = 0;
 	while (s2[j])
-	{
-		str[i + j] = s2[j];
-		j++;
-	}
-	str[i + j] = '\0';
+		str[i++] = s2[j++];
+	str[i] = '\0';
 	free(s1);
 	return (str);
 }
 
-char	*ft_strndup(const char *s, unsigned int size)
+char	*ft_strdup(char *str)
 {
+	int		count;
+	int 	str_len;
 	char	*array;
 
-	array = (char *)malloc(size * sizeof(char));
-	if (!array)
-		return (NULL);
-	ft_memcpy(array, s, size);
+	count = 0;
+	str_len = ft_strlen(str);
+	array = (char *)malloc((str_len + 1) * sizeof(char));
+	while (str[count] != '\0')
+	{
+		array[count] = str[count];
+		count++;
+	}
+	array[count++] = '\0';
 	return (array);
 }
-
-void	*ft_memcpy(void *dest, const void *src, unsigned int n)
+int	have_n(char *str)
 {
-	unsigned char		*dp;
-	const unsigned char	*sp;
+	int	n;
+	int	count;
 
-	dp = (unsigned char *)dest;
-	sp = (const unsigned char *)src;
-	if (!n || dest == src)
-		return (dest);
-	while (n--)
-		*dp++ = *sp++;
-	return (dest);
-}
-
-int	ft_strchr(const char *s, int c)
-{
-	while (*s != '\0')
+	n = 10;
+	count = 0;
+	while (str[count] != '\0')
 	{
-		if (*s == c)
+		if (str[count] == n)
 			return (1);
-		s++;
+		count++;
 	}
 	return (0);
 }
 
-/*while (bytes_read > 0)
+int	n_loc(char	*str)
+{
+	int	n;
+	int	count;
+
+	n = 10;
+	count = 0;
+	while (str[count] != '\0')
 	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if ((ft_strchr(buffer, '\n')) == 0) //Navigue dans la string buffer
-		{
-			if (buffer[search_count] == '\n') //Si le caractere de recherce est /n
-			{
-				search_count = 0; //On remet le compteur de recherche a zero
-				str_count = 0;
-				while (buffer[search_count] != '\n') //Donc tant que le caractere est different de /n 
-				{
-					str[str_count] = buffer[search_count]; //On le copie dans la str
-					search_count++; 
-					str_count++;
-				}
-				str[str_count] = '\n';
-				return (str);
-			}
-			else
-			{
-				buffer = newbuffer(buffer);
-			}
-			search_count++;
-		}
-	}*/
+		if (str[count] == n)
+			return (count);
+		count++;
+	}
+	return (count);
+}
