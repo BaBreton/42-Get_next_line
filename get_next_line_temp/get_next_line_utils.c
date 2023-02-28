@@ -6,92 +6,80 @@
 /*   By: babreton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 06:44:31 by babreton          #+#    #+#             */
-/*   Updated: 2023/02/25 15:05:47 by babreton         ###   ########.fr       */
+/*   Updated: 2023/02/28 08:47:04 by babreton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *s)
+int     lf_new_line(char *stack)
 {
-	int	i;
+    int i;
 
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-char	*ft_strjoin(char *s2, char *s1)
-{
-	char	*str;
-	int	i;
-	int	j;
-
-	if (!s2)
-		return (NULL);
-	if (!s1)
-		return (ft_strdup(s2));
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
-		return (NULL);
-	i = -1;
-	while (s1[++i])
-		str[i] = s1[i];
-	j = 0;
-	while (s2[j])
-		str[i++] = s2[j++];
-	str[i] = '\0';
-	free(s1);
-	return (str);
+    i = 0;
+    if (!stack)
+        return (0);
+    while (stack[i])
+    {
+        if (stack [i] == '\n')
+            return (1);
+        i++;
+    }
+    if (stack[i] == '\n')
+        return (1);
+    return (0);
 }
 
-char	*ft_strdup(char *str)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int		count;
-	int 	str_len;
+	size_t	i;
+	int		len;
 	char	*array;
 
-	count = 0;
-	str_len = ft_strlen(str);
-	array = (char *)malloc((str_len + 1) * sizeof(char));
-	while (str[count] != '\0')
-	{
-		array[count] = str[count];
-		count++;
-	}
-	array[count++] = '\0';
+	i = 0;
+	len = ft_strlen(s2);
+	if (!s1)
+		return (ft_strndup(s2, len));
+	len = len + ft_strlen(s1);
+	array = (char *)malloc(sizeof(char) * (len + 1));
+	if (!array)
+		return (NULL);
+	len = 0;
+	while (s1[i])
+		array[len++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		array[len++] = s2[i++];
+	array[len] = '\0';
+	free(s1);
 	return (array);
 }
-int	have_n(char *str)
-{
-	int	n;
-	int	count;
 
-	n = 10;
-	count = 0;
-	while (str[count] != '\0')
-	{
-		if (str[count] == n)
-			return (1);
-		count++;
-	}
-	return (0);
+int ft_strlen(char *s)
+{
+    int i;
+
+    i = 0;
+    while (s[i])
+        i++;
+    return (i);
 }
-
-int	n_loc(char	*str)
+char	*ft_strndup(char *s, int len)
 {
-	int	n;
-	int	count;
+	char	*str;
+	int		i;
 
-	n = 10;
-	count = 0;
-	while (str[count] != '\0')
+	i = 0;
+	if (!s || !len)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	while (i < len)
 	{
-		if (str[count] == n)
-			return (count);
-		count++;
+		str[i] = s[i];
+		i++;
 	}
-	return (count);
+	str[i] = '\0';
+	return (str);
 }
