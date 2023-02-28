@@ -6,7 +6,7 @@
 /*   By: babreton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:46:34 by babreton          #+#    #+#             */
-/*   Updated: 2023/02/28 09:22:24 by babreton         ###   ########.fr       */
+/*   Updated: 2023/02/28 10:25:17 by babreton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char    *get_next_line(int fd)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		buffer[bytes_read] = 0;
-		ft_strjoin(&temp, buffer);
+		temp = ft_strjoin(temp, buffer);
 		if (have_n(&temp))
 			break;
 	}

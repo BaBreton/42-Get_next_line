@@ -6,7 +6,7 @@
 /*   By: babreton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:20:26 by babreton          #+#    #+#             */
-/*   Updated: 2023/02/28 09:20:14 by babreton         ###   ########.fr       */
+/*   Updated: 2023/02/28 10:24:52 by babreton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strdup(char *str, int len)
 	char	*array;
 	int		count;
 
+	if(!str)
+		return (NULL);
 	count = 0;
 	array = (char *)malloc((len + 1) * sizeof(char));
 	while (count < len)
@@ -33,34 +35,42 @@ char	*ft_loop(char *str1, char *str2)
 	int	i;
 	int j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (str2[i])
-		i++;
+	while (str2[i] != '\0')
+			i++;
 	while(str1[j])
 	{
-		str2[i + j] = str1[j];
+		str2[i] = str1[j];
+		i++;
 		j++;
 	}
 	return(str2);
 }
 
-char	*ft_strjoin(char **temp, char *buffer)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int		str_len;
+	size_t	i;
+	int		len;
 	char	*array;
-	char	*str;
 
-	if (!*temp)
-		return (*temp = ft_strdup(buffer, ft_strlen(buffer)));
-	str = *temp;
-	str_len = ft_strlen(str) + ft_strlen(buffer);
-	array = (char *)malloc((str_len + 1) * sizeof(char));
-	array = ft_loop(*temp, array);
-	array = ft_loop(buffer, array);
-	array[str_len + 1] = 0;
-	free(*temp);
-	return (*temp = array);
+	i = 0;
+	len = ft_strlen(s2);
+	if (!s1)
+		return (ft_strdup(s2, len));
+	len = len + ft_strlen(s1);
+	array = (char *)malloc(sizeof(char) * (len + 1));
+	if (!array)
+		return (NULL);
+	len = 0;
+	while (s1[i])
+		array[len++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		array[len++] = s2[i++];
+	array[len] = '\0';
+	free(s1);
+	return (array);
 }
 
 int	have_n(char	**temp)
@@ -69,6 +79,8 @@ int	have_n(char	**temp)
 	int		n;
 	char	*str;
 
+	if (!temp)
+		return (0);
 	i = 0;
 	n = 10;
 	str = *temp;

@@ -6,7 +6,7 @@
 /*   By: babreton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:46:43 by babreton          #+#    #+#             */
-/*   Updated: 2023/02/28 08:24:01 by babreton         ###   ########.fr       */
+/*   Updated: 2023/02/28 10:24:01 by babreton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@
 
 int     ft_strlen(char *s);
 char	*ft_strdup(char *str, int len);
-char	*ft_strjoin(char **temp, char *buffer);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_loop(char *str1, char *str2);
 int     have_n(char	**temp);
 char	*print_line(char **temp);
+char    *get_next_line(int fd);
 
 #endif
