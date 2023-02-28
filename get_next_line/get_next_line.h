@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babreton < marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: babreton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:46:43 by babreton          #+#    #+#             */
-/*   Updated: 2023/02/27 15:08:56 by babreton         ###   ########.fr       */
+/*   Updated: 2023/02/28 08:24:01 by babreton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@
 # include <fcntl.h>
 
 int     ft_strlen(char *s);
-char	*ft_strdup(char *str);
+char	*ft_strdup(char *str, int len);
 char	*ft_strjoin(char **temp, char *buffer);
-
+char	*ft_loop(char *str1, char *str2);
+int     have_n(char	**temp);
+char	*print_line(char **temp);
 
 #endif
