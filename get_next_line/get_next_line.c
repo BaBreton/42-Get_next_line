@@ -6,7 +6,7 @@
 /*   By: babreton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:46:34 by babreton          #+#    #+#             */
-/*   Updated: 2023/02/28 09:20:45 by babreton         ###   ########.fr       */
+/*   Updated: 2023/02/28 09:22:24 by babreton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char    *get_next_line(int fd)
 	return (print_line(&temp));
 }
 
-int main(void)
+/*int main(void)
 {
 	int fd = open("fd", O_RDONLY);
 	char	*str;
@@ -62,4 +62,4 @@ int main(void)
 		i++;
 	}
 	return (0);
-}
+}*/
