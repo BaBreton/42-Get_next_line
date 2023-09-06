@@ -5,30 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: babreton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 06:44:29 by babreton          #+#    #+#             */
-/*   Updated: 2023/02/28 08:48:14 by babreton         ###   ########.fr       */
+/*   Created: 2023/02/26 11:46:43 by babreton          #+#    #+#             */
+/*   Updated: 2023/02/28 11:57:45 by babreton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-#ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 256
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4
 # endif
 
-char    *get_next_line(int fd);
-char    *ft_strjoin(char *s1, char *s2);
-int     ft_strlen(char *s);
-char	*ft_strndup(char *s, int len);
-int     lf_new_line(char *stack);
-char    *print_line(char **stack);
+# include <ctype.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
+int		ft_strlen(char *s);
+char	*ft_strdup(char *str, int len);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_loop(char *str1, char *str2);
+int		have_n(char	*temp);
+char	*print_line(char **temp);
+char	*get_next_line(int fd);
 
 #endif
